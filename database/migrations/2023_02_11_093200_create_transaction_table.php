@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('config_payment', function (Blueprint $table) {
+        Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->string('fee');
-            $table->string('vat');
+            $table->integer('appointment_id');
+            $table->string('fee_doctor')->nullable();
+            $table->string('fee_specialist')->nullable();
+            $table->string('fee_hospital')->nullable();
+            $table->string('sub_total')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('total')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_payment');
+        Schema::dropIfExists('transaction');
     }
 };
