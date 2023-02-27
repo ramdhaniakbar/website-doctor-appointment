@@ -115,7 +115,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->forceDelete();
+        $role->delete();
 
         Alert::success('Success Message', 'Successfully deleted role');
         

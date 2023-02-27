@@ -2,7 +2,9 @@
 
 namespace App\Models\ManagementAccess;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ManagementAccess\Permission;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ManagementAccess\PermissionRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +30,18 @@ class Role extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    // many to many 
+    // gausah nentuin field penghubung
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    } 
+
+    public function permission()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 
     // one to many
     public function role_user()

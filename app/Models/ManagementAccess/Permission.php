@@ -2,6 +2,7 @@
 
 namespace App\Models\ManagementAccess;
 
+use App\Models\ManagementAccess\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ManagementAccess\PermissionRole;
@@ -28,6 +29,12 @@ class Permission extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    // many to many
+    public function role()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 
     // one to many
     public function permission_role()

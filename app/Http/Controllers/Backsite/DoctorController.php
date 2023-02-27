@@ -9,6 +9,8 @@ use App\Http\Requests\Doctor\UpdateDoctorRequest;
 use App\Models\MasterData\Specialist;
 use App\Models\Operational\Doctor;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 
 class DoctorController extends Controller
 {
@@ -75,6 +77,7 @@ class DoctorController extends Controller
      */
     public function show(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_show'), Response::denyWithStatus(403));
         return view('pages.backsite.operational.doctor.show', compact('doctor'));
     }
 
@@ -86,6 +89,8 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_edit'), Response::denyWithStatus(403));
+        
         // for select2 = ascending a to z
         $specialist = Specialist::orderBy('name', 'asc')->get();
 
@@ -120,6 +125,8 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
+        abort_if(Gate::denies('doctor_delete'), Response::denyWithStatus(403));
+
         $doctor->delete();
 
         Alert::success('Success Message', 'Successfully updated doctor');

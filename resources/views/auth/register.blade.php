@@ -52,10 +52,10 @@
                         </label>
 
                         <div class="mt-10 grid gap-6">
-                            <a href="sign-up-success.html"
+                            <button type="submit"
                                 class="text-center text-white text-lg font-medium bg-[#0D63F3] px-10 py-4 rounded-full">
                                 Continue
-                            </a>
+                            </button>
                             <a href="{{ route('login') }}"
                                 class="text-center text-lg text-[#1E2B4F] font-medium bg-[#F2F6FE] px-10 py-4 rounded-full">
                                 Sign In

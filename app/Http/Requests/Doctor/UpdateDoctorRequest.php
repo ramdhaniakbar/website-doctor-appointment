@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Doctor;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 
 class UpdateDoctorRequest extends FormRequest
 {
@@ -13,6 +15,7 @@ class UpdateDoctorRequest extends FormRequest
      */
     public function authorize()
     {
+        abort_if(Gate::denies('doctor_update'), Response::denyWithStatus(403));
         return true;
     }
 
